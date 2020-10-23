@@ -35,7 +35,7 @@ export const Container = styled.div`
 
     & .logo {
     margin-bottom: 0;
-  }
+    }
   }
 `;
 
@@ -53,8 +53,6 @@ export const Body = styled.div`
     align-items: center;
     width: 50%;
   }
-
-  
 
   & p {
     font-size: 12px;
@@ -98,7 +96,7 @@ export const Body = styled.div`
   }
 `;
 
-export const Footer = styled.div`
+export const Bottom = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
