@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
+const Signup = React.lazy(() => import('./pages/Signup'));
 const Login = React.lazy(() => import('./pages/Login'));
 
 /* const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -26,6 +27,7 @@ export default function Routes() {
     <BrowserRouter>
       <Switch>
         <Route path='/login' component={Login}></Route>
+        <Route path='/signup' component={Signup}></Route>
       </Switch>
     </BrowserRouter>
   );
