@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 const Login = React.lazy(() => import('./pages/Login'));
+const ChangeProfileInformation = React.lazy(() => import('./pages/Change-Profile-Information'));
 
 /* const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -26,6 +27,7 @@ export default function Routes() {
     <BrowserRouter>
       <Switch>
         <Route path='/login' component={Login}></Route>
+        <Route path='/change-profile-information' component={ChangeProfileInformation}></Route>
       </Switch>
     </BrowserRouter>
   );
