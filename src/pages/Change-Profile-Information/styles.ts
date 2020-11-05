@@ -7,6 +7,11 @@ export const Container = styled.div`
   align-items: center;
   width: 100vw;
   height: 100vh;
+
+  @media screen and (max-height: 660px){
+    height: 100%;
+    margin-top: 50px;
+  }
 `;
 
 export const ProfileInformation = styled.div`
@@ -23,9 +28,9 @@ export const Bar = styled.div`
     font-size: 18px;
   }
 
-  @media screen and (max-width: 800px){
+  @media screen and (max-width: 660px){
     & hr {
-      width: 400px;
+      width: 300px;
     }
   }
 `;
