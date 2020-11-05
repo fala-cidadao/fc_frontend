@@ -13,6 +13,10 @@ export const Container = styled.div`
     width: 300px;
     margin-bottom: 30px;
   }
+
+  @media screen and (max-height: 640px){
+    height: 100%;
+  }
 `;
 
 export const Form = styled.div`
@@ -40,9 +44,9 @@ export const Form = styled.div`
     padding: 10px;
     background: ${(props) => props.theme.colors.contrast};
     border: none;
-    width: 300px;
+    width: 400px;
     border-radius: 15px;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   & input:focus {
@@ -52,7 +56,7 @@ export const Form = styled.div`
 
   & input::placeholder {
     color: ${(props) => props.theme.colors.secondary};
-    font-size: 14px;
+    font-size: 16px;
   }
 
   & button {
@@ -60,12 +64,16 @@ export const Form = styled.div`
     width: 300px;
     border-radius: 15px;
     color: ${(props) => props.theme.colors.background};
-    margin-top: 20px;
+    margin-top: 40px;
   }
 
   @media screen and (max-width: 660px){
     & .title {
       width: 80%;
+    }
+
+    & input {
+      width: 300px;
     }
   }
 `;
