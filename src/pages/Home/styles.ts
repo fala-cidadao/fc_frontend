@@ -5,8 +5,6 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
   background: ${(props) => props.theme.colors.primary};
 
   & .logo {

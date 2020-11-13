@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { ProfileInformation, Container } from '../styles/components/sidebar';
+import { ProfileInformation, Container } from './styles';
 import { FaUserCircle, FaThList, FaCog, FaSignOutAlt, FaCity } from 'react-icons/fa';
 
-const Menu: React.FC = () => {
+const Sidebar: React.FC = () => {
 
   return(
     <Container>
@@ -20,4 +20,4 @@ const Menu: React.FC = () => {
 
 };
 
-export default Menu;
+export default Sidebar;

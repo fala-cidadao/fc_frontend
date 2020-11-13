@@ -9,7 +9,6 @@ export const Container = styled.div`
   height: 100vh;
   background-image: url(${bg});
   background-size: cover;
-
   & img {
     width: 50%;
   }
