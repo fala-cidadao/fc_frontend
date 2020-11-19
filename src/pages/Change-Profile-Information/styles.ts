@@ -4,33 +4,41 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   width: 100vw;
   height: 100vh;
 
-  @media screen and (max-height: 660px){
+  & .sidebar {
+    justify-content: center;
     height: 100%;
-    margin-top: 50px;
+    position: fixed;
+  }
+
+  @media screen and (max-height: 500px){
+    height: 100%;
+    width: 100%;
+
+    & .sidebar {
+      height: 0;
+    }
   }
 `;
 
-export const ProfileInformation = styled.div`
-
-`;
-
 export const Bar = styled.div`
+  display: flex;
+  justify-content: center;
   margin-top: 30px;
+
   & hr {
-    width: 700px;
+    width: 650px;
   }
 
   & h1 {
     font-size: 18px;
   }
 
-  @media screen and (max-width: 660px){
+  @media screen and (max-width: 900px){
     & hr {
-      width: 300px;
+      width: 320px;
     }
   }
 `;
@@ -40,6 +48,7 @@ export const Form = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-left: 200px;
 
   & .control {
     margin: 5px;
@@ -74,5 +83,13 @@ export const Form = styled.div`
     border-radius: 15px;
     color: ${(props) => props.theme.colors.background};
     margin-top: 20px;
+  }
+
+  @media screen and (max-width: 900px){
+    margin-left: 0;
+  }
+
+  @media screen and (max-height: 850px){
+    margin-top: 300px;
   }
 `;
