@@ -11,12 +11,14 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
 
+  border-radius: 0px 20px 20px 0px;
+
   @media screen and (max-width: 900px){
     position: fixed;
     width: 100%;
     height: 0;
     padding: 70px 20px;
-    border-radius: 0px 0px 0px 0px;
+    border-radius: 0px 0px 20px 20px;
 
     display: flex;
     flex-direction: row;
