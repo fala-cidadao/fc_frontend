@@ -13,14 +13,6 @@ export const Container = styled.div`
     position: fixed;
   }
 
-  @media screen and (max-height: 500px){
-    height: 100%;
-    width: 100%;
-
-    & .sidebar {
-      height: 0;
-    }
-  }
 `;
 
 export const Bar = styled.div`
