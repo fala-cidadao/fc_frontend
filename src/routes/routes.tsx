@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
 import { isLogged } from '../utils/auth';
 const Login = React.lazy(() => import('../pages/Login'));
+const Signup = React.lazy(() => import('../pages/Signup'));
 const RequestRecoverPassword = React.lazy(
   () => import('../pages/Request-Recover-Password')
 );
@@ -33,6 +34,7 @@ export default function Routes() {
       <Switch>
         <Route path='/' component={Home} exact />
         <Route path='/login' component={Login}></Route>
+        <Route path='/signup' component={Signup}></Route>
         <Route
           path='/request-recover-password'
           component={RequestRecoverPassword}
