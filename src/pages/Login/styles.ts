@@ -55,6 +55,10 @@ export const Form = styled.form`
     color: ${(props) => props.theme.colors.background};
     margin-top: 20px;
   }
+
+  & button:disabled {
+    color: ${(props) => props.theme.colors.success};
+  }
 `;
 
 export const OptionBox = styled.div`

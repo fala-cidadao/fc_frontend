@@ -14,12 +14,12 @@ export const Container = styled.div`
     margin-bottom: 30px;
   }
 
-  @media screen and (max-height: 640px){
+  @media screen and (max-height: 640px) {
     height: 100%;
   }
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -67,7 +67,7 @@ export const Form = styled.div`
     margin-top: 40px;
   }
 
-  @media screen and (max-width: 660px){
+  @media screen and (max-width: 660px) {
     & .title {
       width: 80%;
     }

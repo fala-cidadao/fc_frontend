@@ -1,6 +1,6 @@
-export interface Problem {
+export interface IProblem {
   title: string;
-  created_at: string;
+  createdAt: string;
   sector: string;
   author: string;
   status: string;
