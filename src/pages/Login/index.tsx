@@ -87,7 +87,7 @@ const Login: React.FC = () => {
         </button>
         <OptionBox>
           <a>Sou cidadão!</a>
-          <a href='/register'>Realizar cadastro.</a>
+          <a href='/signup'>Realizar cadastro.</a>
         </OptionBox>
       </Form>
       <img src={img}></img>

@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import { Container, Form, OptionBox } from './styles'
-import img from '../../assets/Web/PNG/city_buildings_two_color.png'
-import { Icon } from '@iconify/react'
-import bxShow from '@iconify/icons-bx/bx-show'
-import bxsHide from '@iconify/icons-bx/bxs-hide'
+import { Container, Form, OptionBox } from './styles';
+import img from '../../assets/Web/PNG/city_buildings_two_color.png';
+import { Icon } from '@iconify/react';
+import bxShow from '@iconify/icons-bx/bx-show';
+import bxsHide from '@iconify/icons-bx/bxs-hide';
 
 const Signup: React.FC = () => {
-  const [show, setShow] = useState<boolean>(false)
+  const [show, setShow] = useState<boolean>(false);
 
   return (
     <Container>
@@ -71,12 +71,12 @@ const Signup: React.FC = () => {
         </div>
         <button className='button'>Cadastrar</button>
         <OptionBox>
-          <a>Já tenho uma conta.</a>
+          <a href='login'>Já tenho uma conta.</a>
         </OptionBox>
       </Form>
       <img src={img}></img>
     </Container>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;
