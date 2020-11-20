@@ -1,16 +1,21 @@
 import styled from 'styled-components';
-import bg from '../../assets/Web/PNG/bg.png';
+
 export const Container = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-image: url(${bg});
-  background-size: cover;
+  background: ${(props) => props.theme.colors.primary};
+
   & img {
-    width: 50%;
+    width: 300px;
+    margin-bottom: 30px;
+  }
+
+  @media screen and (max-height: 640px) {
+    height: 100%;
   }
 `;
 
@@ -19,6 +24,12 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  & .title {
+    width: 700px;
+    margin-bottom: 50px;
+    text-align: center;
+  }
 
   & .control {
     margin: 5px;
@@ -33,9 +44,9 @@ export const Form = styled.form`
     padding: 10px;
     background: ${(props) => props.theme.colors.contrast};
     border: none;
-    width: 300px;
+    width: 400px;
     border-radius: 15px;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   & input:focus {
@@ -45,7 +56,7 @@ export const Form = styled.form`
 
   & input::placeholder {
     color: ${(props) => props.theme.colors.secondary};
-    font-size: 14px;
+    font-size: 16px;
   }
 
   & button {
@@ -53,23 +64,16 @@ export const Form = styled.form`
     width: 300px;
     border-radius: 15px;
     color: ${(props) => props.theme.colors.background};
-    margin-top: 20px;
+    margin-top: 40px;
   }
 
-  & button:disabled {
-    color: ${(props) => props.theme.colors.success};
-  }
-`;
+  @media screen and (max-width: 660px) {
+    & .title {
+      width: 80%;
+    }
 
-export const OptionBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 300px;
-  justify-content: space-between;
-
-  & a {
-    color: ${(props) => props.theme.colors.secondary};
-    font-size: 14px;
-    margin-top: 15px;
+    & input {
+      width: 300px;
+    }
   }
 `;
