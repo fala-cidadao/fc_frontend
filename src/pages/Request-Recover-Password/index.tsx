@@ -18,7 +18,7 @@ const RequestRecoverPassword: React.FC = () => {
 
   return (
     <Container>
-      <img src={logo} />
+      <img alt='imagem' src={logo} />
       <Form
         onSubmit={(e: FormEvent<HTMLFormElement>) => {
           e.preventDefault();

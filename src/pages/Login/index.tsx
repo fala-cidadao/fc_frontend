@@ -25,7 +25,7 @@ const Login: React.FC = () => {
     setLoading(true);
     api.login(email, password).then((res) => {
       if (res) {
-        history.push('/dashboard');
+        history.push('/dashboard/problems');
       } else {
         setPassword('');
         setLoading(false);
@@ -90,7 +90,7 @@ const Login: React.FC = () => {
           <a href='/signup'>Realizar cadastro.</a>
         </OptionBox>
       </Form>
-      <img src={img}></img>
+      <img alt='imagem' src={img}></img>
     </Container>
   );
 };

@@ -1,4 +1,5 @@
 import React, { HTMLAttributes } from 'react';
+import { useHistory } from 'react-router-dom';
 import { IProblem } from '../../@types/problems';
 
 import { RowBox, Container } from './styles';
@@ -7,8 +8,10 @@ interface IProps extends HTMLAttributes<HTMLElement> {
   problem: IProblem;
 }
 const ProblemItem: React.FC<IProps> = (props) => {
+  const history = useHistory();
+
   return (
-    <Container>
+    <Container onClick={() => history.push('problem/' + props.problem._id)}>
       <RowBox>
         <h1>{props.problem.title}</h1>
         <span>{props.problem.status}</span>

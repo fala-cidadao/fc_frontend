@@ -74,7 +74,7 @@ const Signup: React.FC = () => {
           <a href='login'>Já tenho uma conta.</a>
         </OptionBox>
       </Form>
-      <img src={img}></img>
+      <img alt='imagem' src={img}></img>
     </Container>
   );
 };

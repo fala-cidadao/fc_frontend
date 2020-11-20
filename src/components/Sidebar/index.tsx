@@ -11,21 +11,23 @@ import {
 import { NavLink } from 'react-router-dom';
 
 const Sidebar: React.FC = () => {
+  const user = JSON.parse(localStorage.getItem('user') || '');
+
   return (
     <Container>
       <ProfileInformation>
         <FaUserCircle className='user-picture' size={70} color='000' />
-        <p>Olá, Prefeito</p>
+        <p>Olá, {user.name}</p>
       </ProfileInformation>
-      <NavLink to='problems' activeClassName='active'>
+      <NavLink exact to='/dashboard/problems' activeClassName='active'>
         {' '}
         <FaThList className='list-icon' size={40} color='000' />{' '}
       </NavLink>
-      <NavLink to='new-problem' activeClassName='active'>
+      <NavLink to='/dashboard/new-problem' activeClassName='active'>
         {' '}
         <FaCity className='city-icon' size={40} color='000' />{' '}
       </NavLink>
-      <NavLink to='user-config' activeClassName='active'>
+      <NavLink to='/dashboard/user-config' activeClassName='active'>
         {' '}
         <FaCog className='config-icon' size={40} color='000' />{' '}
       </NavLink>

@@ -231,5 +231,69 @@ export const api = {
           resolve(false);
         });
     });
+  },
+
+  getProblem(id: string): Promise<IProblem> {
+    return new Promise((resolve, reject) => {
+      connection
+        .get(`problem/${id}`)
+        .then((res) => {
+          resolve(res.data);
+        })
+        .catch((err) => {
+          store.addNotification({
+            title: 'Falha',
+            message:
+              'Falha ao recuperar problema, por favor tente novamente ou contate o suporte.',
+            type: 'danger',
+            insert: 'top',
+            container: 'top-right',
+            animationIn: ['animate__animated', 'animate__fadeIn'],
+            animationOut: ['animate__animated', 'animate__fadeOut'],
+            dismiss: {
+              duration: 4000,
+              onScreen: true
+            }
+          });
+          reject(err);
+        });
+    });
+  },
+
+  addComment(
+    text: string,
+    id: string,
+    owner: string,
+    role: string
+  ): Promise<IProblem> {
+    return new Promise((resolve, reject) => {
+      connection
+        .post(`problem/${id}/comment`, {
+          owner,
+          text,
+          role,
+          image: ''
+        })
+        .then((res) => {
+          resolve(res.data);
+        })
+        .catch((err) => {
+          store.addNotification({
+            title: 'Falha',
+            message:
+              'Falha ao adicionar comentário, por favor tente novamente ou contate o suporte.',
+            type: 'danger',
+            insert: 'top',
+            container: 'top-right',
+            animationIn: ['animate__animated', 'animate__fadeIn'],
+            animationOut: ['animate__animated', 'animate__fadeOut'],
+            dismiss: {
+              duration: 4000,
+              onScreen: true
+            }
+          });
+          reject(err);
+        });
+    });
   }
 };
