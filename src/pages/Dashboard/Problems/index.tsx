@@ -1,31 +1,32 @@
-import React, { ChangeEvent, useState } from 'react';
-import { Problem } from '../../../@types/problems';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import { IProblem } from '../../../@types/problems';
 import ProblemItem from '../../../components/ProblemItem';
 import { Container, Filter, List, RowBox, Select, FilterRadio } from './styles';
 
 import { Icon } from '@iconify/react';
 import bxSearch from '@iconify/icons-bx/bx-search';
-import bxBell from '@iconify/icons-bx/bx-bell';
-import filter from '../../../utils/filter';
+import { api } from '../../../service/api';
 
 const Problems: React.FC = () => {
   const [selected, setSelected] = useState<string>('date');
-  const [data, setData] = useState<Problem[]>([
-    {
-      title: 'teste',
-      author: 'test',
-      created_at: new Date().toDateString(),
-      sector: 'teste',
-      status: 'teste'
-    },
-    {
-      title: 'teste2',
-      author: 'test2',
-      created_at: new Date().toDateString(),
-      sector: 'teste2',
-      status: 'teste2'
-    }
-  ]);
+  const [search, setSearch] = useState<string>('');
+  const [allData, setAllData] = useState<IProblem[]>([]);
+  const [data, setData] = useState<IProblem[]>([]);
+
+  useEffect(() => {
+    api.listProblems().then((res) => {
+      setAllData(res);
+      setData(res);
+    });
+  }, []);
+
+  function handleSearch() {
+    let newData = allData;
+    newData = newData.filter((elem) =>
+      elem.title.toLowerCase().includes(search.toLowerCase())
+    );
+    search !== '' ? setData([...newData]) : setData(allData);
+  }
 
   return (
     <Container>
@@ -37,17 +38,17 @@ const Problems: React.FC = () => {
                 className='input'
                 type='email'
                 placeholder='Busque alguma reclamação'
+                value={search}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  setSearch(e.target.value);
+                  handleSearch();
+                }}
               />
               <span className='icon is-small is-right'>
                 <Icon icon={bxSearch} style={{ fontSize: '20px' }} />
               </span>
             </p>
           </div>
-          <Icon
-            className='bell'
-            icon={bxBell}
-            style={{ fontSize: '30px', cursor: 'pointer' }}
-          />
         </RowBox>
 
         <RowBox>

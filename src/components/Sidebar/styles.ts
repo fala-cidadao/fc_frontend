@@ -3,12 +3,21 @@ import styled from 'styled-components';
 export const Container = styled.div`
   position: sticky;
   height: 100vh;
-  padding: 32px 48px;
   background: #caf0c1;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  & .active {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border-left: 5px solid white;
+    border-radius: 5px;
+    padding: 10px 0;
+  }
 
   @media screen and (max-width: 900px) {
     position: fixed;

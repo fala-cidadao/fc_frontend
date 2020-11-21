@@ -8,6 +8,8 @@ export const Container = styled.li`
   border-radius: 7px;
   width: 100%;
   margin-bottom: 15px;
+  cursor: pointer;
+  pointer-events: all;
 
   & .date {
     color: ${(props) => props.theme.colors.secondary};

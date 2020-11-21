@@ -1,36 +1,25 @@
-import styled from 'styled-components';
-
+import styled from 'styled-components'
+import bg from '../../assets/Web/PNG/bg.png'
 export const Container = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background: ${(props) => props.theme.colors.primary};
+  background-image: url(${bg});
+  background-size: cover;
 
   & img {
-    width: 300px;
-    margin-bottom: 30px;
+    width: 50%;
   }
-
-  @media screen and (max-height: 640px) {
-    height: 100%;
-  }
-`;
+`
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  & .title {
-    width: 700px;
-    margin-bottom: 50px;
-    text-align: center;
-  }
-
   & .control {
     margin: 5px;
 
@@ -44,9 +33,9 @@ export const Form = styled.form`
     padding: 10px;
     background: ${(props) => props.theme.colors.contrast};
     border: none;
-    width: 400px;
+    width: 350px;
     border-radius: 15px;
-    font-size: 16px;
+    font-size: 14px;
   }
 
   & input:focus {
@@ -56,24 +45,29 @@ export const Form = styled.form`
 
   & input::placeholder {
     color: ${(props) => props.theme.colors.secondary};
-    font-size: 16px;
+    font-size: 14px;
   }
 
   & button {
     background: ${(props) => props.theme.colors.success};
-    width: 300px;
+    width: 100%;
     border-radius: 15px;
     color: ${(props) => props.theme.colors.background};
-    margin-top: 40px;
+    margin-top: 20px;
+    font-size: 25px;
+    padding: 5px;
   }
+`
 
-  @media screen and (max-width: 660px) {
-    & .title {
-      width: 80%;
-    }
+export const OptionBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  justify-content: center;
 
-    & input {
-      width: 300px;
-    }
+  & a {
+    color: ${(props) => props.theme.colors.secondary};
+    font-size: 14px;
+    margin-top: 15px;
   }
-`;
+`

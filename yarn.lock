@@ -1596,6 +1596,13 @@
   resolved "https://registry.yarnpkg.com/@types/aria-query/-/aria-query-4.2.0.tgz#14264692a9d6e2fa4db3df5e56e94b5e25647ac0"
   integrity sha512-iIgQNzCm0v7QMhhe4Jjn9uRh+I6GoPmt03CbEtwx3ao8/EfoQcmgtqH4vQ5Db/lxiIGaWDv6nwvunuh0RyX0+A==
 
+"@types/axios@^0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@types/axios/-/axios-0.14.0.tgz#ec2300fbe7d7dddd7eb9d3abf87999964cafce46"
+  integrity sha1-7CMA++fX3d1+udOr+HmZlkyvzkY=
+  dependencies:
+    axios "*"
+
 "@types/babel__core@^7.1.0":
   version "7.1.10"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.10.tgz#ca58fc195dd9734e77e57c6f2df565623636ab40"
@@ -1740,6 +1747,13 @@
   version "0.63.27"
   resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.63.27.tgz#c97ecad8183bc15e33a6f355420cf20ce990c633"
   integrity sha512-p9MKEIuq/6DkIhHzMWlTV+ZXjJ99UF7BLdnBcvizO0hf5o+pnjudjkSjZikEyB3P12WkZD0jp1UGzCm/8EnWvg==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-notifications-component@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@types/react-notifications-component/-/react-notifications-component-2.4.0.tgz#b70516a7f17d83ee86843a8940866153735412a0"
+  integrity sha512-MT+QOXgoskK76oRFTj8cO5ImWhE7KuSvmHj96dOgSSmJfiACZnaOOPoYPFuXr5rGBXVwYNE9o5iWMv115uGlkw==
   dependencies:
     "@types/react" "*"
 
@@ -2478,6 +2492,13 @@ aws4@^1.8.0:
   version "1.10.1"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.10.1.tgz#e1e82e4f3e999e2cfd61b161280d16a111f86428"
   integrity sha512-zg7Hz2k5lI8kb7U32998pRRFin7zJlkfezGJjUc2heaD4Pw2wObakCDVzkKztTm/Ln7eiVvYsjqak0Ed4LkMDA==
+
+axios@*, axios@^0.21.0:
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.0.tgz#26df088803a2350dff2c27f96fef99fe49442aca"
+  integrity sha512-fmkJBknJKoZwem3/IKSSLpkdNXZeBu5Q7GA/aRsr2btgrptmSCxi2oFjZHqGdK9DoTil9PIHlPIZw2EcRJXRvw==
+  dependencies:
+    follow-redirects "^1.10.0"
 
 axobject-query@^2.0.2:
   version "2.2.0"
@@ -5095,7 +5116,7 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-follow-redirects@^1.0.0:
+follow-redirects@^1.0.0, follow-redirects@^1.10.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
   integrity sha512-aq6gF1BEKje4a9i9+5jimNFIpq4Q1WiwBToeRK5NvZBd/TRsmW8BsJfOEGkr76TbOyPVD3OVDN910EcUNtRYEA==
@@ -9174,6 +9195,11 @@ react-is@^16.12.0, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-i
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
+react-notifications-component@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/react-notifications-component/-/react-notifications-component-3.0.2.tgz#63cb02012c7b1e6c46aed5d3926ba5466d03fd4f"
+  integrity sha512-LzZgB5CatNoC+9letZ8QhvorT+6BEzqc8fxJ6r8x2mu/s1B3YH1zmd+uFGk64EKoeRSukMVOaAoVBYTwoqMVXg==
 
 react-router-dom@^5.2.0:
   version "5.2.0"
