@@ -21,7 +21,7 @@ const Home = () => {
           <a className='login' href='/login'>
             Login
           </a>
-          <a href='/register'>Cadastre-se</a>
+          <a href='/signup'>Cadastre-se</a>
         </div>
       </Body>
       <Bottom>

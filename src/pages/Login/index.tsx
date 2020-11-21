@@ -86,7 +86,7 @@ const Login: React.FC = () => {
           Entrar
         </button>
         <OptionBox>
-          <a>Sou cidadão!</a>
+          <a href='/request-recover-password'>Esqueci minha senha!</a>
           <a href='/signup'>Realizar cadastro.</a>
         </OptionBox>
       </Form>
