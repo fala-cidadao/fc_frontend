@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { ThemeProvider } from 'styled-components';
-import Routes from './routes';
+import Routes from './routes/routes';
 import GlobalStyle from './styles/global';
 import theme from './styles/theme';
 
