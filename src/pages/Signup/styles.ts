@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import bg from '../../assets/Web/PNG/bg.png';
+import styled from 'styled-components'
+import bg from '../../assets/Web/PNG/bg.png'
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -9,17 +9,17 @@ export const Container = styled.div`
   height: 100vh;
   background-image: url(${bg});
   background-size: cover;
+
   & img {
     width: 50%;
   }
-`;
+`
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   & .control {
     margin: 5px;
 
@@ -33,7 +33,7 @@ export const Form = styled.form`
     padding: 10px;
     background: ${(props) => props.theme.colors.contrast};
     border: none;
-    width: 300px;
+    width: 350px;
     border-radius: 15px;
     font-size: 14px;
   }
@@ -50,26 +50,24 @@ export const Form = styled.form`
 
   & button {
     background: ${(props) => props.theme.colors.success};
-    width: 300px;
+    width: 100%;
     border-radius: 15px;
     color: ${(props) => props.theme.colors.background};
     margin-top: 20px;
+    font-size: 25px;
+    padding: 5px;
   }
-
-  & button:disabled {
-    color: ${(props) => props.theme.colors.success};
-  }
-`;
+`
 
 export const OptionBox = styled.div`
   display: flex;
   flex-direction: row;
   width: 300px;
-  justify-content: space-between;
+  justify-content: center;
 
   & a {
     color: ${(props) => props.theme.colors.secondary};
     font-size: 14px;
     margin-top: 15px;
   }
-`;
+`
