@@ -1,8 +1,8 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
-import { IProblem } from '../../../@types/problems';
-import { api } from '../../../service/api';
-import { store } from 'react-notifications-component';
+import React, { ChangeEvent, useEffect, useState } from 'react'
+import { useHistory, useParams } from 'react-router-dom'
+import { IProblem } from '../../../@types/problems'
+import { api } from '../../../service/api'
+import { store } from 'react-notifications-component'
 
 import {
   Container,
@@ -10,10 +10,10 @@ import {
   StatusBox,
   ImagesBox,
   CommentariesBox
-} from './styles';
+} from './styles'
 
-import { Icon } from '@iconify/react';
-import bxSend from '@iconify/icons-bx/bx-send';
+import { Icon } from '@iconify/react'
+import bxSend from '@iconify/icons-bx/bx-send'
 
 interface IParam {
   id: string;
@@ -34,32 +34,34 @@ const SingleProblem: React.FC = () => {
       address: '',
       city: '',
       state: '',
-      district: ''
+      district: '',
+      lat: 0,
+      lg: 0
     }
-  });
-  const [comment, setComment] = useState<string>('');
+  })
+  const [comment, setComment] = useState<string>('')
 
-  const { id } = useParams<IParam>();
-  const history = useHistory();
+  const { id } = useParams<IParam>()
+  const history = useHistory()
 
   useEffect(() => {
     api
       .getProblem(id)
       .then((res) => {
-        setProblem(res);
+        setProblem(res)
       })
       .catch(() => {
-        history.push('/dashboard/problems');
+        history.push('/dashboard/problems')
       });
-  }, []);
+  }, [])
 
   function sendCommentary() {
     if (comment !== '') {
-      const user = JSON.parse(localStorage.getItem('user') || '');
+      const user = JSON.parse(localStorage.getItem('user') || '')
       api.addComment(comment, id, user.userId, user.role).then((res) => {
-        setProblem(res);
+        setProblem(res)
       });
-      setComment('');
+      setComment('')
     } else {
       store.addNotification({
         title: 'Falha',
@@ -73,7 +75,7 @@ const SingleProblem: React.FC = () => {
           duration: 4000,
           onScreen: true
         }
-      });
+      })
     }
   }
 
@@ -131,11 +133,11 @@ const SingleProblem: React.FC = () => {
               <span>{elem.owner}</span>
               <p>{elem.text}</p>
             </>
-          );
+          )
         })}
       </CommentariesBox>
     </Container>
-  );
-};
+  )
+}
 
-export default SingleProblem;
+export default SingleProblem
