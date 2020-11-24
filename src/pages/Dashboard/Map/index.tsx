@@ -1,4 +1,3 @@
-/* eslint-disable quote-props */
 import React, { useState, useEffect } from 'react';
 import { Container } from './styles';
 import { MapContainer, TileLayer } from 'react-leaflet';
