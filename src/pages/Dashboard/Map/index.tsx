@@ -1,67 +1,25 @@
 /* eslint-disable quote-props */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container } from './styles';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import L from 'leaflet';
 import { IProblem } from '../../../@types/problems';
 import CustomMarker from './Marker';
 import 'leaflet/dist/leaflet.css';
+import { api } from '../../../service/api';
 
 const DefaultCenter = L.latLng(-7.2171368, -35.911943);
 
-const problems: IProblem[] = [
-  {
-    _id: '5fb478156f772e163211e1cb',
-    author: '5fa73d6696dd081d89e45862',
-    sector: 'safety',
-    location: {
-      lat: -7.21667,
-      lg: -35.908813
-    },
-    description: 'teste3',
-    title: 'this is an test',
-    image: 'https://pbs.twimg.com/media/EnD5dt9XMAAm9UV?format=jpg&name=large',
-    status: 'OnGoing',
-    comments: [
-      {
-        owner: '5fb478156f772e163211e1cb',
-        text: 'description',
-        role: 'admin',
-        image:
-          'https://pbs.twimg.com/media/EnD5dt9XMAAm9UV?format=jpg&name=large'
-      },
-      {
-        owner: '5fb478156f772e163211e1cb',
-        text: 'description',
-        role: 'admin',
-        image:
-          'https://pbs.twimg.com/media/EnD5dt9XMAAm9UV?format=jpg&name=large'
-      },
-      {
-        owner: '5fb478156f772e163211e1cb',
-        text: 'description',
-        role: 'admin',
-        image:
-          'https://pbs.twimg.com/media/EnD5dt9XMAAm9UV?format=jpg&name=large'
-      },
-      {
-        owner: '5fb478156f772e163211e1cb',
-        text: 'description',
-        role: 'admin',
-        image:
-          'https://pbs.twimg.com/media/EnD5dt9XMAAm9UV?format=jpg&name=large'
-      },
-      {
-        owner: '5fb7cf56a247530017a2dfd7',
-        text: 'oi som',
-        role: 'admin',
-        image: ''
-      }
-    ],
-    createdAt: '2020-11-18T01:25:41.382Z'
-  }
-];
 const Map = () => {
+  const [problems, setProblem] = useState<IProblem[]>([])
+  useEffect(() => {
+    api
+      .listProblems()
+      .then((res) => {
+        setProblem(res)
+      })
+  }, [])
+  
   return (
     <Container>
       <MapContainer
