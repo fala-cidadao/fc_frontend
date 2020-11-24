@@ -1,76 +1,78 @@
-/* eslint-disable quote-props */
-// import icon from 'leaflet/dist/images/marker-icon.png';
-// import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { IProblem } from '../../../../@types/problems';
 import { Marker } from 'react-leaflet';
-import L from 'leaflet';
+import L, { icon } from 'leaflet';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
-// import safetySVG from '../../../../assets/Web/marker/safety.svg';
-// import energy from '../../../../assets/Web/marker/energy.svg';
-// import garbage from '../../../../assets/Web/marker/garbage.svg';
-import health from '../../../../assets/Web/marker/health.svg';
-import appStore from '../../../../assets/Web/PNG/bg.png';
-// import infraestruture from '../../../../assets/Web/marker/infraestruture.svg';
-// import other from '../../../../assets/Web/marker/other.svg';
-// import sewer from '../../../../assets/Web/marker/sewer.svg';
-// import education from '../../../../assets/Web/marker/education.svg';
-// import icon from 'leaflet/dist/images/marker-icon.png';
+import safety from '../../../../assets/Web/markers/safety.svg';
+import energy from '../../../../assets/Web/markers/energy.svg';
+import garbage from '../../../../assets/Web/markers/garbage.svg';
+import health from '../../../../assets/Web/markers/health.svg';
+import infraestruture from '../../../../assets/Web/markers/infrastruture.svg';
+import other from '../../../../assets/Web/markers/other.svg';
+import sewer from '../../../../assets/Web/markers/sewer.svg';
+import education from '../../../../assets/Web/markers/education.svg';
+
 type withChildren<T = unknown> = T & { children?: React.ReactNode };
 type CustomMarkerProps = withChildren<{ problem: IProblem }>;
-// const SafetyIcon = new L.Icon({
-//   iconUrl: safety,
-//   shadowUrl: iconShadow
-// });
 
-// const EnergyIcon = new L.Icon({
-//   iconUrl: energy,
-//   shadowUrl: iconShadow
-// });
-
-// const GarbageIcon = new L.Icon({
-//   iconUrl: garbage,
-//   shadowUrl: iconShadow
-// });
-
-const HealthIcon = L.icon({
-  iconUrl: health,
+const defaultOptions = {
+  iconSize: new L.Point(50, 55),
+  iconAnchor: new L.Point(25, 55),
   shadowUrl: iconShadow
+}
+
+const SafetyIcon = new L.Icon({
+  iconUrl: safety,
+  ...defaultOptions
 });
 
-// const InfraestrutureIcon = new L.Icon({
-//   iconUrl: infraestruture,
-//   shadowUrl: iconShadow
-// });
-// const OtherIcon = new L.Icon({
-//   iconUrl: other,
-//   shadowUrl: iconShadow
-// });
+const EnergyIcon = new L.Icon({
+  iconUrl: energy,
+  ...defaultOptions
+});
 
-// const SewerIcon = new L.Icon({
-//   iconUrl: sewer,
-//   shadowUrl: iconShadow
-// });
-// const EducationIcon = new L.Icon({
-//   iconUrl: education,
-//   shadowUrl: iconShadow
-// });
+const GarbageIcon = new L.Icon({
+  iconUrl: garbage,
+  ...defaultOptions
+});
+
+const HealthIcon = new L.Icon({
+  iconUrl: health,
+  ...defaultOptions
+});
+
+const InfraestrutureIcon = new L.Icon({
+  iconUrl: infraestruture,
+  ...defaultOptions
+});
+const OtherIcon = new L.Icon({
+  iconUrl: other,
+  ...defaultOptions
+});
+
+const SewerIcon = new L.Icon({
+  iconUrl: sewer,
+  ...defaultOptions
+});
+const EducationIcon = new L.Icon({
+  iconUrl: education,
+  ...defaultOptions
+});
 
 const markerIcons: Record<string, L.Icon> = {
-  // education: EducationIcon,
-  // safety: SafetyIcon,
-  // sewer: SewerIcon,
-  // infraestruture: InfraestrutureIcon,
-  health: HealthIcon
-  // other: OtherIcon,
-  // garbage: GarbageIcon,
-  // energy: EnergyIcon
+  education: EducationIcon,
+  safety: SafetyIcon,
+  sewer: SewerIcon,
+  infraestruture: InfraestrutureIcon,
+  healthIcon: HealthIcon,
+  other: OtherIcon,
+  garbage: GarbageIcon,
+  energy: EnergyIcon
 };
+
 const CustomMarker: React.FC<CustomMarkerProps> = ({ problem, children }) => {
   const { lat, lg } = problem.location;
-
   return (
     <Marker
       key={problem._id}

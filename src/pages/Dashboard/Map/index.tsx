@@ -1,40 +1,12 @@
 /* eslint-disable quote-props */
 import React from 'react';
 import { Container } from './styles';
-import {
-  MapContainer,
-  Marker,
-  Popup,
-  TileLayer,
-  MapContainerProps
-} from 'react-leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
 import L from 'leaflet';
 import { IProblem } from '../../../@types/problems';
 import CustomMarker from './Marker';
 import 'leaflet/dist/leaflet.css';
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-import educationSVG from '../../../assets/Web/markers/education.svg';
-import safetySVG from '../../../assets/Web/markers/safety.svg';
-const SafetyIcon = new L.Icon({
-  iconUrl: safetySVG,
-  shadowUrl: iconShadow
-});
 
-const EducationIcon = new L.Icon({
-  iconUrl: educationSVG,
-  shadowUrl: iconShadow
-});
-
-const DefaultIcon = L.icon({
-  iconUrl: icon,
-  shadowUrl: iconShadow
-});
-
-const markerIcons: Record<string, L.Icon> = {
-  education: EducationIcon,
-  safety: SafetyIcon
-};
 const DefaultCenter = L.latLng(-7.2171368, -35.911943);
 
 const problems: IProblem[] = [
@@ -103,15 +75,8 @@ const Map = () => {
         />
 
         {problems.map((problem) => {
-          console.log(markerIcons);
-          const { lat, lg } = problem.location;
-          console.log(lat, lg);
+          
           return (
-            // <Marker
-            //   key={problem._id}
-            //   position={[lat, lg]}
-            //   icon={markerIcons[problem.sector]}
-            // ></Marker>
             <CustomMarker key={problem._id} problem={problem}></CustomMarker>
           );
         })}
