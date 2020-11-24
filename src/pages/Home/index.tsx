@@ -6,6 +6,7 @@ import playStoreImg from '../../assets/Web/PNG/playStore.png';
 import appStoreImg from '../../assets/Web/PNG/appStore.png';
 import { Container, Body, Bottom } from './styles';
 import { FaExclamationCircle } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 
 const Home = () => {
   return (
@@ -18,10 +19,10 @@ const Home = () => {
         </div>
         <div className='core'>
           <h1 className='title'>Vamos juntos melhorar sua cidade?</h1>
-          <a className='login' href='/login'>
+          <NavLink className='login' to='/login'>
             Login
-          </a>
-          <a href='/signup'>Cadastre-se</a>
+          </NavLink>
+          <NavLink to='/signup'>Cadastre-se</NavLink>
         </div>
       </Body>
       <Bottom>

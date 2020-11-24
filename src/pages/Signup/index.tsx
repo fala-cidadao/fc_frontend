@@ -5,6 +5,7 @@ import img from '../../assets/Web/PNG/city_buildings_two_color.png';
 import { Icon } from '@iconify/react';
 import bxShow from '@iconify/icons-bx/bx-show';
 import bxsHide from '@iconify/icons-bx/bxs-hide';
+import { NavLink } from 'react-router-dom';
 
 const Signup: React.FC = () => {
   const [show, setShow] = useState<boolean>(false);
@@ -71,7 +72,7 @@ const Signup: React.FC = () => {
         </div>
         <button className='button'>Cadastrar</button>
         <OptionBox>
-          <a href='login'>Já tenho uma conta.</a>
+          <NavLink to='login'>Já tenho uma conta.</NavLink>
         </OptionBox>
       </Form>
       <img alt='imagem' src={img}></img>
