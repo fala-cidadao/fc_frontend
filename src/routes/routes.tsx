@@ -9,7 +9,8 @@ const RequestRecoverPassword = React.lazy(
 const Home = React.lazy(() => import('../pages/Home'));
 const RecoverPassword = React.lazy(() => import('../pages/Recover-Password'));
 const Dashboard = React.lazy(() => import('../pages/Dashboard'));
-
+const ChangeProfileInformation = React.lazy(() => import('../pages/Change-Profile-Information'));
+ 
 const PrivateRoute = ({ component: Component, ...rest }: any) => (
   <Route
     {...rest}
@@ -27,7 +28,7 @@ const PrivateRoute = ({ component: Component, ...rest }: any) => (
     }
   />
 );
-
+ 
 export default function Routes() {
   return (
     <BrowserRouter>
@@ -43,6 +44,7 @@ export default function Routes() {
           path='/recover-password/:token'
           component={RecoverPassword}
         ></Route>
+        <Route path='/change-profile-information' component={ChangeProfileInformation}></Route>
         <PrivateRoute path='/dashboard' component={Dashboard} />
       </Switch>
     </BrowserRouter>

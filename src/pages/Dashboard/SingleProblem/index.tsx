@@ -51,7 +51,7 @@ const SingleProblem: React.FC = () => {
       .catch(() => {
         history.push('/dashboard/problems');
       });
-  }, []);
+  }, [id]);
 
   function sendCommentary() {
     if (comment !== '') {

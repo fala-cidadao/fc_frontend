@@ -6,7 +6,7 @@ import { Icon } from '@iconify/react';
 import bxShow from '@iconify/icons-bx/bx-show';
 import bxsHide from '@iconify/icons-bx/bxs-hide';
 import { api } from '../../service/api';
-import { useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { isLogged } from '../../utils/auth';
 
 const Login: React.FC = () => {
@@ -86,8 +86,8 @@ const Login: React.FC = () => {
           Entrar
         </button>
         <OptionBox>
-          <a href='/request-recover-password'>Esqueci minha senha!</a>
-          <a href='/signup'>Realizar cadastro.</a>
+          <NavLink to='/request-recover-password'>Esqueci minha senha!</NavLink>
+          <NavLink to='/signup'>Realizar cadastro.</NavLink>
         </OptionBox>
       </Form>
       <img alt='imagem' src={img}></img>
