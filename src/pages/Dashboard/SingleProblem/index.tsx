@@ -28,15 +28,12 @@ const SingleProblem: React.FC = () => {
     author: '',
     status: '',
     comments: [],
-    image: '',
+    adminImages: [],
+    userImages: [],
     description: '',
     location: {
-      address: '',
-      city: '',
-      state: '',
-      district: '',
-      lat: 0,
-      lg: 0
+      latitude: 0,
+      longitude: 0
     }
   })
   const [comment, setComment] = useState<string>('')
@@ -101,7 +98,9 @@ const SingleProblem: React.FC = () => {
       </InfoBox>
       <h3 className='subtitle'>Imagens adicionadas pelo cidadão</h3>
       <ImagesBox>
-        <img src={problem.image} alt='imagem' />
+        {problem.userImages.map((image, index) => (
+          <img key={index} src={image} alt='problem'></img>
+        ))}
       </ImagesBox>
       <div className='field'>
         <p className='control has-icons-right'>
