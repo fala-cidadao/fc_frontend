@@ -10,14 +10,12 @@ import { api } from '../../../service/api';
 const DefaultCenter = L.latLng(-7.2171368, -35.911943);
 
 const Map = () => {
-  const [problems, setProblem] = useState<IProblem[]>([])
+  const [problems, setProblem] = useState<IProblem[]>([]);
   useEffect(() => {
-    api
-      .listProblems()
-      .then((res) => {
-        setProblem(res)
-      })
-  }, [])
+    api.listProblems().then((res) => {
+      setProblem(res);
+    });
+  }, []);
   
   return (
     <Container>
@@ -30,9 +28,7 @@ const Map = () => {
           url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-
         {problems.map((problem) => {
-          
           return (
             <CustomMarker key={problem._id} problem={problem}></CustomMarker>
           );
