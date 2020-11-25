@@ -19,10 +19,8 @@ interface IComment {
 }
 
 interface ILocation {
-  address?: string;
-  city?: string;
-  state?: string;
-  district?: string;
-  lat: number;
-  lg: number;
+  address: string;
+  city: string;
+  state: string;
+  district: string;
 }

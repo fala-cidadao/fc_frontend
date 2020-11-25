@@ -23,7 +23,7 @@ const Sidebar: React.FC = () => {
         {' '}
         <FaThList className='list-icon' size={40} color='000' />{' '}
       </NavLink>
-      <NavLink to='/dashboard/map' activeClassName='active'>
+      <NavLink to='/dashboard/new-problem' activeClassName='active'>
         {' '}
         <FaCity className='city-icon' size={40} color='000' />{' '}
       </NavLink>
@@ -37,6 +37,6 @@ const Sidebar: React.FC = () => {
       </NavLink>
     </Container>
   );
-}
+};
 
 export default Sidebar;
