@@ -21,7 +21,7 @@ const defaultOptions = {
   iconSize: new L.Point(50, 55),
   iconAnchor: new L.Point(25, 55),
   shadowUrl: iconShadow
-}
+};
 
 const SafetyIcon = new L.Icon({
   iconUrl: safety,
@@ -47,6 +47,7 @@ const InfraestrutureIcon = new L.Icon({
   iconUrl: infraestruture,
   ...defaultOptions
 });
+
 const OtherIcon = new L.Icon({
   iconUrl: other,
   ...defaultOptions
@@ -56,6 +57,7 @@ const SewerIcon = new L.Icon({
   iconUrl: sewer,
   ...defaultOptions
 });
+
 const EducationIcon = new L.Icon({
   iconUrl: education,
   ...defaultOptions
@@ -72,14 +74,14 @@ const markerIcons: Record<string, L.Icon> = {
   energy: EnergyIcon
 };
 
-const CustomMarker: React.FC<CustomMarkerProps> = ({ problem, children }) => {
-  if(!problem.location.lat || !problem.location.lg) problem.location = { lat: -7.21667, lg: -35.908813}
-  const { lat, lg } = problem.location;
+const CustomMarker: React.FC<CustomMarkerProps> = ({ problem }) => {
+  const { latitude, longitude } = problem.location;
+
   return (
     <Marker
       key={problem._id}
-      position={L.latLng(lat, lg)}
-      icon={markerIcons[problem.sector || 'safety']}
+      position={L.latLng(latitude, longitude)}
+      icon={markerIcons[problem.sector || 'other']}
     >
       <StyledPopup offset={[0, -60]}>
         <h3>{problem.title}</h3>
