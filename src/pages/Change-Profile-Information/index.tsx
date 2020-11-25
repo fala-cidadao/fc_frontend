@@ -4,12 +4,13 @@ import { Container, Bar, Form } from './styles';
 import { Icon } from '@iconify/react';
 import bxShow from '@iconify/icons-bx/bx-show';
 import bxsHide from '@iconify/icons-bx/bxs-hide';
-import { FaUserCircle } from 'react-icons/fa';
 import Sidebar from '../../components/Sidebar';
 
 const ChangeProfileInformation: React.FC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
+
+  const user = JSON.parse(localStorage.getItem('user') || '');
 
   return (
     <Container>
@@ -17,14 +18,14 @@ const ChangeProfileInformation: React.FC = () => {
         <Sidebar/>
       </div>
       <Form>
-        <FaUserCircle className='user-picture' size={150} color="0B6E4F"/>
+      <img className='user-picture' src={user.image} />
         <Bar>
           <h1 className='subtitle'>Alterar nome<hr/></h1>
         </Bar>
         <input
           className='input'
           placeholder='Insira seu novo nome'
-          defaultValue="Nome do Usuário"
+          defaultValue={user.name}
         />
         <Bar>
           <h1 className='subtitle'>Alterar senha<hr/></h1>

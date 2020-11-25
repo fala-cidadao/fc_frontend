@@ -50,6 +50,12 @@ export const Form = styled.div`
     }
   }
 
+  & img {
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+  }
+
   & input {
     padding: 10px;
     background: ${(props) => props.theme.colors.contrast};

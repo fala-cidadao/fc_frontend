@@ -28,13 +28,11 @@ const SingleProblem: React.FC = () => {
     author: '',
     status: '',
     comments: [],
-    image: '',
+    images: [],
     description: '',
     location: {
-      address: '',
-      city: '',
-      state: '',
-      district: ''
+      latitude: '',
+      longitude: '',
     }
   });
   const [comment, setComment] = useState<string>('');
@@ -90,16 +88,16 @@ const SingleProblem: React.FC = () => {
       <InfoBox>
         <p>{problem.description}</p>
         <p>
-          {problem.location.city}/{problem.location.state}
+          Latitude: {problem.location.latitude}
           <br />
-          Bairro: {problem.location.district}
-          <br />
-          Rua: {problem.location.address}
+          Longitude: {problem.location.longitude}
         </p>
       </InfoBox>
       <h3 className='subtitle'>Imagens adicionadas pelo cidadão</h3>
       <ImagesBox>
-        <img src={problem.image} alt='imagem' />
+        {problem?.images.map(image => (
+          <img src={image} alt="Imagens do problema" />
+        ))}
       </ImagesBox>
       <div className='field'>
         <p className='control has-icons-right'>

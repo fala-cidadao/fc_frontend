@@ -5,7 +5,7 @@ export interface IProblem {
   sector: string;
   author: string;
   status: string;
-  image: string;
+  images: string[];
   description: string;
   comments: IComment[];
   location: ILocation;
@@ -19,8 +19,6 @@ interface IComment {
 }
 
 interface ILocation {
-  address: string;
-  city: string;
-  state: string;
-  district: string;
+  latitude: string;
+  longitude: string;
 }

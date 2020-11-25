@@ -2,7 +2,6 @@ import React from 'react';
 
 import { ProfileInformation, Container } from './styles';
 import {
-  FaUserCircle,
   FaThList,
   FaCog,
   FaSignOutAlt,
@@ -16,7 +15,7 @@ const Sidebar: React.FC = () => {
   return (
     <Container>
       <ProfileInformation>
-        <FaUserCircle className='user-picture' size={70} color='000' />
+        <img className='user-picture' src={user.image} />
         <p>Olá, {user.name}</p>
       </ProfileInformation>
       <NavLink exact to='/dashboard/problems' activeClassName='active'>

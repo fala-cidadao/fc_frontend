@@ -42,6 +42,12 @@ export const ProfileInformation = styled.div`
   flex-direction: column;
   align-items: center;
 
+  & img {
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+  }
+
   & p {
     margin-top: 16px;
     font-size: 20px;
