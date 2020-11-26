@@ -6,13 +6,6 @@ export const Container = styled.div`
   justify-content: center;
   width: 100vw;
   height: 100vh;
-
-  & .sidebar {
-    justify-content: center;
-    height: 100%;
-    position: fixed;
-  }
-
 `;
 
 export const Bar = styled.div`
@@ -41,6 +34,12 @@ export const Form = styled.div`
   justify-content: center;
   align-items: center;
   margin-left: 200px;
+
+  & img {
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+  }
 
   & .control {
     margin: 5px;

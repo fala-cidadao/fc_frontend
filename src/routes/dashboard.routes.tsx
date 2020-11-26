@@ -6,6 +6,7 @@ const Problems = React.lazy(
 );
 
 const Map = React.lazy(() => import('../pages/Dashboard/Map'));
+const ChangeProfileInformation = React.lazy(() => import('../pages/Change-Profile-Information'));
 
 const ProblemAddImage = React.lazy(
   () => import('../pages/Dashboard/Problem/ProblemAddImage')
@@ -21,6 +22,7 @@ export default function DashboardRoutes() {
       />
       <Route path='/dashboard/problem/:id' component={SingleProblem} />
       <Route path='/dashboard/map' component={Map} />
+      <Route path='/dashboard/user-config' component={ChangeProfileInformation}></Route>
     </Switch>
   );
 }
