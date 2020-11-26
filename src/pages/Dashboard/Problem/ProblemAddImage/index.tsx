@@ -1,30 +1,27 @@
-import React, { ChangeEvent, useEffect, useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
-import { IProblem } from '../../../@types/problems'
-import { api } from '../../../service/api'
-import { store } from 'react-notifications-component'
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+import { IProblem } from '../../../../@types/problems';
+import { api } from '../../../../service/api';
+import { store } from 'react-notifications-component';
 
-import {
-  Container,
-  InfoBox,
-  StatusBox,
-  ImagesBox,
-  CommentariesBox
-} from './styles'
+import { StatusBox, ImagesBox, CommentariesBox } from '../common.styles';
 
-import { Icon } from '@iconify/react'
-import bxSend from '@iconify/icons-bx/bx-send'
+import { Container, InfoBox } from './styles';
+
+import { Icon } from '@iconify/react';
+import bxSend from '@iconify/icons-bx/bx-send';
+import FileBase64 from 'react-file-base64';
 
 interface IParam {
   id: string;
 }
 
-const SingleProblem: React.FC = () => {
+const ProblemAddImage: React.FC = () => {
   const [problem, setProblem] = useState<IProblem>({
     _id: '',
     title: '',
     createdAt: '',
-    sector: '',
+    category: '',
     author: '',
     status: '',
     comments: [],
@@ -35,30 +32,31 @@ const SingleProblem: React.FC = () => {
       latitude: 0,
       longitude: 0
     }
-  })
-  const [comment, setComment] = useState<string>('')
+  });
+  const [comment, setComment] = useState<string>('');
 
-  const { id } = useParams<IParam>()
-  const history = useHistory()
+  const { id } = useParams<IParam>();
+  const history = useHistory();
 
   useEffect(() => {
+    console.log(id);
     api
       .getProblem(id)
       .then((res) => {
-        setProblem(res)
+        setProblem(res);
       })
       .catch(() => {
-        history.push('/dashboard/problems')
-      });
+        history.push('/dashboard/problems');
+      })
   }, [id]);
 
   function sendCommentary() {
     if (comment !== '') {
-      const user = JSON.parse(localStorage.getItem('user') || '')
+      const user = JSON.parse(localStorage.getItem('user') || '');
       api.addComment(comment, id, user.userId, user.role).then((res) => {
-        setProblem(res)
-      });
-      setComment('')
+        setProblem(res);
+      })
+      setComment('');
     } else {
       store.addNotification({
         title: 'Falha',
@@ -72,8 +70,32 @@ const SingleProblem: React.FC = () => {
           duration: 4000,
           onScreen: true
         }
-      })
+      });
     }
+  }
+
+  function uploadFiles(files) {
+    console.log(files.map((file) => file.base64));
+    problem.adminImages = problem.adminImages.concat(
+      files.map((file) => file.base64)
+    )
+
+    api.updateProblem(id, problem).then((problem) => {
+      store.addNotification({
+        title: 'Sucesso',
+        message: 'Imagens enviadas com sucesso!',
+        type: 'success',
+        insert: 'top',
+        container: 'top-right',
+        animationIn: ['animate__animated', 'animate__fadeIn'],
+        animationOut: ['animate__animated', 'animate__fadeOut'],
+        dismiss: {
+          duration: 4000,
+          onScreen: true
+        }
+      });
+      setProblem(problem);
+    })
   }
 
   return (
@@ -84,22 +106,24 @@ const SingleProblem: React.FC = () => {
           <div />
           {problem.status}
         </span>
-        <button className='button'>Alterar Status</button>
       </StatusBox>
       <InfoBox>
         <p>{problem.description}</p>
-        <p>
-          {problem.location.city}/{problem.location.state}
-          <br />
-          Bairro: {problem.location.district}
-          <br />
-          Rua: {problem.location.address}
-        </p>
+        <div>
+          <FileBase64 multiple={true} onDone={(files) => uploadFiles(files)} />
+        </div>
       </InfoBox>
       <h3 className='subtitle'>Imagens adicionadas pelo cidadão</h3>
       <ImagesBox>
         {problem.userImages.map((image, index) => (
           <img key={index} src={image} alt='problem'></img>
+        ))}
+      </ImagesBox>
+
+      <h3 className='subtitle'>Imagens adicionadas pelo admnistrador</h3>
+      <ImagesBox>
+        {problem.adminImages.map((image, index) => (
+          <img key={index} src={image} alt='solved'></img>
         ))}
       </ImagesBox>
       <div className='field'>
@@ -126,17 +150,17 @@ const SingleProblem: React.FC = () => {
         </p>
       </div>
       <CommentariesBox>
-        {problem.comments.map((elem) => {
+        {problem.comments.map((elem, index) => {
           return (
-            <>
+            <div key={index}>
               <span>{elem.owner}</span>
               <p>{elem.text}</p>
-            </>
-          )
+            </div>
+          );
         })}
       </CommentariesBox>
     </Container>
-  )
+  );
 }
 
-export default SingleProblem
+export default ProblemAddImage;

@@ -18,7 +18,7 @@ const ProblemItem: React.FC<IProps> = (props) => {
       </RowBox>
       <span className='date'>{props.problem.createdAt}</span>
       <RowBox>
-        <h3>{props.problem.sector}</h3>
+        <h3>{props.problem.category}</h3>
         <h3>{props.problem.author}</h3>
       </RowBox>
     </Container>

@@ -2,7 +2,7 @@ export interface IProblem {
   title: string;
   createdAt: string;
   _id: string;
-  sector: string;
+  category: string;
   author: string;
   status: string;
   userImages: string[];
