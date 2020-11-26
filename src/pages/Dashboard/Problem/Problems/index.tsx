@@ -1,11 +1,11 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import { IProblem } from '../../../@types/problems';
-import ProblemItem from '../../../components/ProblemItem';
+import { IProblem } from '../../../../@types/problems';
+import ProblemItem from '../../../../components/ProblemItem';
 import { Container, Filter, List, RowBox, Select, FilterRadio } from './styles';
 
 import { Icon } from '@iconify/react';
 import bxSearch from '@iconify/icons-bx/bx-search';
-import { api } from '../../../service/api';
+import { api } from '../../../../service/api';
 
 const Problems: React.FC = () => {
   const [selected, setSelected] = useState<string>('date');

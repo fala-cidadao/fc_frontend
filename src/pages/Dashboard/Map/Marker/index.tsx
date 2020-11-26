@@ -68,7 +68,7 @@ const markerIcons: Record<string, L.Icon> = {
   safety: SafetyIcon,
   sewer: SewerIcon,
   infraestruture: InfraestrutureIcon,
-  healthIcon: HealthIcon,
+  health: HealthIcon,
   other: OtherIcon,
   garbage: GarbageIcon,
   energy: EnergyIcon
@@ -81,7 +81,7 @@ const CustomMarker: React.FC<CustomMarkerProps> = ({ problem }) => {
     <Marker
       key={problem._id}
       position={L.latLng(latitude, longitude)}
-      icon={markerIcons[problem.sector || 'other']}
+      icon={markerIcons[problem.category || 'other']}
     >
       <StyledPopup offset={[0, -60]}>
         <h3>{problem.title}</h3>

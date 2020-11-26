@@ -3,7 +3,7 @@ import { store } from 'react-notifications-component';
 import { IProblem } from '../@types/problems';
 
 let connection = axios.create({
-  baseURL: 'http://es-fc-backend.herokuapp.com/'
+  baseURL: 'https://es-fc-backend.herokuapp.com/'
 });
 
 export const api = {
@@ -213,7 +213,7 @@ export const api = {
           });
           resolve(true);
         })
-        .catch((err) => {
+        .catch(() => {
           store.addNotification({
             title: 'Falha',
             message:
@@ -234,6 +234,7 @@ export const api = {
   },
 
   getProblem(id: string): Promise<IProblem> {
+    console.log('id' + id)
     return new Promise((resolve, reject) => {
       connection
         .get(`problem/${id}`)
@@ -241,6 +242,7 @@ export const api = {
           resolve(res.data);
         })
         .catch((err) => {
+          console.log(err)
           store.addNotification({
             title: 'Falha',
             message:
@@ -293,6 +295,32 @@ export const api = {
             }
           });
           reject(err);
+        });
+    });
+  },
+
+  updateProblem(id: string, problem: IProblem): Promise<IProblem> {
+    console.log(problem)
+    return new Promise((resolve) => {
+      connection
+        .put(`problem/${id}`, problem)
+        .then((res) => {
+          resolve(res.data);
+        })
+        .catch(() => {
+          store.addNotification({
+            title: 'Fail',
+            message: 'Algo deu errado',
+            type: 'danger',
+            insert: 'top',
+            container: 'top-right',
+            animationIn: ['animate__animated', 'animate__fadeIn'],
+            animationOut: ['animate__animated', 'animate__fadeOut'],
+            dismiss: {
+              duration: 4000,
+              onScreen: true
+            }
+          });
         });
     });
   }
