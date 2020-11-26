@@ -234,7 +234,7 @@ export const api = {
   },
 
   getProblem(id: string): Promise<IProblem> {
-    console.log('id' + id)
+    console.log('id' + id);
     return new Promise((resolve, reject) => {
       connection
         .get(`problem/${id}`)
@@ -242,7 +242,7 @@ export const api = {
           resolve(res.data);
         })
         .catch((err) => {
-          console.log(err)
+          console.log(err);
           store.addNotification({
             title: 'Falha',
             message:
@@ -300,7 +300,6 @@ export const api = {
   },
 
   updateProblem(id: string, problem: IProblem): Promise<IProblem> {
-    console.log(problem)
     return new Promise((resolve) => {
       connection
         .put(`problem/${id}`, problem)

@@ -19,11 +19,24 @@ export const StatusBox = styled.div<IStatus>`
     display: inline-flex;
     margin-right: 10px;
     background-color: ${(props) =>
-      props.status === 'OnGoing' ? 'blue' : 'red'};
+      props.status === 'Em andamento'
+        ? 'blue'
+        : props.status === 'Concluido'
+        ? 'green'
+        : props.status === 'Em Analise'
+        ? 'red'
+        : 'yellow'};
   }
 
   & span {
-    color: ${(props) => (props.status === 'OnGoing' ? 'blue' : 'red')};
+    color: ${(props) =>
+      props.status === 'Em andamento'
+        ? 'blue'
+        : props.status === 'Concluido'
+        ? 'green'
+        : props.status === 'Em Analise'
+        ? 'red'
+        : 'yellow'};
   }
 
   & button {
@@ -42,11 +55,14 @@ export const ImagesBox = styled.div`
   flex-direction: row;
   justify-content: space-evenly;
   margin-bottom: 15px;
-  height: 150px;
+  gap: 10px;
+  flex-wrap: wrap;
   & img {
     width: 200px;
     height: 150px;
     border-radius: 5px;
+    flex-basis: 30%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
 `;
 

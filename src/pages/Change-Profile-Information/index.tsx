@@ -7,18 +7,22 @@ import bxsHide from '@iconify/icons-bx/bxs-hide';
 
 const ChangeProfileInformation: React.FC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(
+    false
+  );
 
   const user = JSON.parse(localStorage.getItem('user') || '');
 
   return (
     <Container>
-      <div className='sidebar'>
-      </div>
+      <div className='sidebar'></div>
       <Form>
-        <img className='user-picture' src={user.image} />
+        <img alt='imagem' className='user-picture' src={user.image} />
         <Bar>
-          <h1 className='subtitle'>Alterar nome<hr/></h1>
+          <h1 className='subtitle'>
+            Alterar nome
+            <hr />
+          </h1>
         </Bar>
         <input
           className='input'
@@ -26,7 +30,10 @@ const ChangeProfileInformation: React.FC = () => {
           defaultValue={user.name}
         />
         <Bar>
-          <h1 className='subtitle'>Alterar senha<hr/></h1>
+          <h1 className='subtitle'>
+            Alterar senha
+            <hr />
+          </h1>
         </Bar>
         <div className='control'>
           <p className='control has-icons-right'>
@@ -68,7 +75,6 @@ const ChangeProfileInformation: React.FC = () => {
       </Form>
     </Container>
   );
-
 };
 
 export default ChangeProfileInformation;
