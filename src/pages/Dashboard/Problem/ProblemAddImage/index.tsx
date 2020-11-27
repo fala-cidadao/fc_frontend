@@ -52,7 +52,7 @@ const ProblemAddImage: React.FC = () => {
       })
       .catch(() => {
         history.push('/dashboard/problems');
-      })
+      });
   }, [id]);
 
   function sendCommentary() {
@@ -60,7 +60,7 @@ const ProblemAddImage: React.FC = () => {
       const user = JSON.parse(localStorage.getItem('user') || '');
       api.addComment(comment, id, user.userId, user.role).then((res) => {
         setProblem(res);
-      })
+      });
       setComment('');
     } else {
       store.addNotification({
@@ -83,7 +83,7 @@ const ProblemAddImage: React.FC = () => {
     console.log(files.map((file) => file.base64));
     problem.adminImages = problem.adminImages.concat(
       files.map((file) => file.base64)
-    )
+    );
 
     api.updateProblem(id, problem).then((problem) => {
       store.addNotification({
@@ -100,7 +100,7 @@ const ProblemAddImage: React.FC = () => {
         }
       });
       setProblem(problem);
-    })
+    });
   }
 
   return (
@@ -166,6 +166,6 @@ const ProblemAddImage: React.FC = () => {
       </CommentariesBox>
     </Container>
   );
-}
+};
 
 export default ProblemAddImage;

@@ -10,3 +10,14 @@ export interface IUser {
     role: string;
   };
 }
+
+export interface User{
+  image: string;
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  role: string;
+  phone: string;
+  createdAt: string;
+}

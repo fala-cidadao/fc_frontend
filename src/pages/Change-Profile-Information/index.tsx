@@ -1,24 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, FormEvent } from 'react';
 
-import { Container, Bar, Form } from './styles';
+import { Bar, Form } from './styles';
 import { Icon } from '@iconify/react';
 import bxShow from '@iconify/icons-bx/bx-show';
 import bxsHide from '@iconify/icons-bx/bxs-hide';
+import { api } from '../../service/api';
+import { useHistory } from 'react-router-dom';
+import { User } from '../../@types/user';
 
 const ChangeProfileInformation: React.FC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(
+    false
+  );
 
-  const user = JSON.parse(localStorage.getItem('user') || '');
+  const local = JSON.parse(localStorage.getItem('user') || '');
+
+  const [user, setUser] = useState<User>({
+    image: "",
+    id: "",
+    name: "",
+    email: "",
+    password: "",
+    role: "",
+    phone: "",
+    createdAt: ""
+  })
+  
+  const history = useHistory()
+
+  useEffect(() => {
+    api
+      .getUser(local.userId)
+      .then((res) => {
+        setUser(res)
+      })
+      .catch(() => {
+        history.push('/dashboard/problems')
+      });
+  }, [local.userId]);
 
   return (
-    <Container>
-      <div className='sidebar'>
-      </div>
       <Form>
-        <img className='user-picture' src={user.image} />
+        <img alt='imagem' className='user-picture' src={user.image} />
         <Bar>
-          <h1 className='subtitle'>Alterar nome<hr/></h1>
+          <h1 className='subtitle'>
+            Alterar nome
+            <hr />
+          </h1>
         </Bar>
         <input
           className='input'
@@ -26,7 +55,10 @@ const ChangeProfileInformation: React.FC = () => {
           defaultValue={user.name}
         />
         <Bar>
-          <h1 className='subtitle'>Alterar senha<hr/></h1>
+          <h1 className='subtitle'>
+            Alterar senha
+            <hr />
+          </h1>
         </Bar>
         <div className='control'>
           <p className='control has-icons-right'>
@@ -66,9 +98,7 @@ const ChangeProfileInformation: React.FC = () => {
         </div>
         <button className='button'>Salvar</button>
       </Form>
-    </Container>
   );
-
 };
 
 export default ChangeProfileInformation;

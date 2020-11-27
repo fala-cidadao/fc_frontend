@@ -8,6 +8,11 @@ export const Container = styled.div`
   align-items: center;
   padding: 20px 150px;
 
+  & select {
+    padding: 5px;
+    font-size: 15px;
+  }
+
   & input,
   & .field {
     width: 100%;
@@ -28,4 +33,3 @@ export const InfoBox = styled.div`
   align-self: flex-start;
   margin: 30px 0;
 `;
-
