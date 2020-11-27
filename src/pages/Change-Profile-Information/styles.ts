@@ -34,6 +34,17 @@ export const Form = styled.div`
     border-radius: 75px;
   }
 
+  & .image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & .user-picture {
+    margin-bottom: 10px;  
+  }
+
   & .control {
     margin: 5px;
     span {
