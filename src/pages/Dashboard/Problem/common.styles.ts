@@ -61,7 +61,9 @@ export const ImagesBox = styled.div`
   margin-bottom: 15px;
   gap: 10px;
   flex-wrap: wrap;
-  & img {
+  height: 150px;
+  overflow: scroll;
+  img {
     width: 200px;
     height: 150px;
     border-radius: 5px;
