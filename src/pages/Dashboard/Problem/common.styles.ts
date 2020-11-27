@@ -16,7 +16,22 @@ export const StatusBox = styled.div<IStatus>`
   width: 100%;
   align-items: center;
 
-  & div {
+  .link {
+    width: 100px;
+    padding: 10px;
+    background-color: #caf0c1;
+    color: white;
+    text-decorator: none;
+  }
+
+  .control {
+    width: 250px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .marker {
     width: 25px;
     height: 25px;
     border-radius: 100%;
@@ -91,5 +106,5 @@ export const Comment = styled.div<IRole>`
   text-align: ${(props) => (props.role === 'admin' ? 'right' : 'left')};
   background-color: ${(props) =>
     props.role === 'admin' ? '#F6D55C' : '#ED553B'};
-    color: ${(props) => (props.role === 'admin' ? 'black' : 'white')};
+  color: ${(props) => (props.role === 'admin' ? 'black' : 'white')};
 `;

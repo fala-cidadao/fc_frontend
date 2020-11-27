@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { IProblem } from '../../../../@types/problems';
 import { api } from '../../../../service/api';
 import { store } from 'react-notifications-component';
@@ -117,13 +117,19 @@ const SingleProblem: React.FC = () => {
           </select>
         ) : (
           <span>
-            <div />
+            <div className='marker' />
             {problem.status}
           </span>
         )}
-        <button onClick={handleChangeStatus} className='button'>
-          {editStatus ? 'Salvar' : 'Alterar Status'}
-        </button>
+        <div className='control'>
+          <NavLink className='button' to={`/dashboard/problem/addimage/${id}`}>
+            Add image
+          </NavLink>
+          <button onClick={handleChangeStatus} className='button'>
+            {editStatus ? 'Salvar' : 'Alterar Status'}
+          </button>
+        </div>
+        
       </StatusBox>
       <InfoBox>
         <p>{problem.description}</p>

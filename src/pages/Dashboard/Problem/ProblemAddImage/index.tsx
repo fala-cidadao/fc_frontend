@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, NavLink } from 'react-router-dom';
 import { IProblem } from '../../../../@types/problems';
 import { api } from '../../../../service/api';
 import { store } from 'react-notifications-component';
@@ -108,9 +108,14 @@ const ProblemAddImage: React.FC = () => {
       <h1 className='title'>{problem.title}</h1>
       <StatusBox status={problem.status}>
         <span>
-          <div />
+          <div className='marker' />
           {problem.status}
         </span>
+        <div className='control'>
+          <NavLink className='button' to={`/dashboard/problem/${id}`}>
+            Go back
+          </NavLink>
+        </div>
       </StatusBox>
       <InfoBox>
         <p>{problem.description}</p>
