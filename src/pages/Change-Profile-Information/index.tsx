@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, FormEvent } from 'react';
 
-import { Container, Bar, Form } from './styles';
+import { Bar, Form } from './styles';
 import { Icon } from '@iconify/react';
 import bxShow from '@iconify/icons-bx/bx-show';
 import bxsHide from '@iconify/icons-bx/bxs-hide';
+import { api } from '../../service/api';
+import { useHistory } from 'react-router-dom';
+import { User } from '../../@types/user';
 
 const ChangeProfileInformation: React.FC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -11,11 +14,33 @@ const ChangeProfileInformation: React.FC = () => {
     false
   );
 
-  const user = JSON.parse(localStorage.getItem('user') || '');
+  const local = JSON.parse(localStorage.getItem('user') || '');
+
+  const [user, setUser] = useState<User>({
+    image: "",
+    id: "",
+    name: "",
+    email: "",
+    password: "",
+    role: "",
+    phone: "",
+    createdAt: ""
+  })
+  
+  const history = useHistory()
+
+  useEffect(() => {
+    api
+      .getUser(local.userId)
+      .then((res) => {
+        setUser(res)
+      })
+      .catch(() => {
+        history.push('/dashboard/problems')
+      });
+  }, [local.userId]);
 
   return (
-    <Container>
-      <div className='sidebar'></div>
       <Form>
         <img alt='imagem' className='user-picture' src={user.image} />
         <Bar>
@@ -73,7 +98,6 @@ const ChangeProfileInformation: React.FC = () => {
         </div>
         <button className='button'>Salvar</button>
       </Form>
-    </Container>
   );
 };
 

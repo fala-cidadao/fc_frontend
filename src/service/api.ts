@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { store } from 'react-notifications-component';
 import { IProblem } from '../@types/problems';
+import { User } from '../@types/user';
 
 let connection = axios.create({
   baseURL: 'https://es-fc-backend.herokuapp.com/'
@@ -310,6 +311,60 @@ export const api = {
           store.addNotification({
             title: 'Fail',
             message: 'Algo deu errado',
+            type: 'danger',
+            insert: 'top',
+            container: 'top-right',
+            animationIn: ['animate__animated', 'animate__fadeIn'],
+            animationOut: ['animate__animated', 'animate__fadeOut'],
+            dismiss: {
+              duration: 4000,
+              onScreen: true
+            }
+          });
+        });
+    });
+  },
+
+  getUser(id: string): Promise<User> {
+    console.log('id: ' + id)
+    return new Promise((resolve, reject) => {
+      connection
+        .get(`users/${id}`)
+        .then((res) => {
+          resolve(res.data);
+        })
+        .catch((err) => {
+          console.log(err)
+          store.addNotification({
+            title: 'Falha',
+            message: 'Falha ao recuperar usuário, por favor tente novamente ou contate o suporte.',
+            type: 'danger',
+            insert: 'top',
+            container: 'top-right',
+            animationIn: ['animate__animated', 'animate__fadeIn'],
+            animationOut: ['animate__animated', 'animate__fadeOut'],
+            dismiss: {
+              duration: 4000,
+              onScreen: true
+            }
+          });
+          reject(err);
+        });
+    });
+  },
+
+  updateUser(id: string, user: User): Promise<User>{
+    console.log(user)
+    return new Promise((resolve) => {
+      connection
+        .put(`users/${id}`, user)
+        .then((res) => {
+          resolve(res.data);
+        })
+        .catch(() => {
+          store.addNotification({
+            title: 'Falha',
+            message: 'Falha ao atualizar informações, por favor tente novamente ou contate o suporte.',
             type: 'danger',
             insert: 'top',
             container: 'top-right',

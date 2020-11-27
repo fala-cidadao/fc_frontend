@@ -22,7 +22,7 @@ export default function DashboardRoutes() {
       />
       <Route path='/dashboard/problem/:id' component={SingleProblem} />
       <Route path='/dashboard/map' component={Map} />
-      <Route path='/dashboard/user-config' component={ChangeProfileInformation}></Route>
+      <Route path='/dashboard/user-config/:id' component={ChangeProfileInformation} />
     </Switch>
   );
 }

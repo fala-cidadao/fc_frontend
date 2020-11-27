@@ -1,13 +1,5 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-`;
-
 export const Bar = styled.div`
   display: flex;
   justify-content: center;
@@ -33,7 +25,8 @@ export const Form = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-left: 200px;
+  width: 100vw;
+  height: 100vh;
 
   & img {
     width: 150px;
