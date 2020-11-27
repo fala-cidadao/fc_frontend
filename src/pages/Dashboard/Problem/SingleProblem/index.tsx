@@ -6,7 +6,12 @@ import { store } from 'react-notifications-component';
 
 import { Container, InfoBox } from './styles';
 
-import { StatusBox, ImagesBox, CommentariesBox } from '../common.styles';
+import {
+  StatusBox,
+  ImagesBox,
+  CommentariesBox,
+  Comment
+} from '../common.styles';
 
 import { Icon } from '@iconify/react';
 import bxSend from '@iconify/icons-bx/bx-send';
@@ -186,17 +191,18 @@ const SingleProblem: React.FC = () => {
         </p>
       </div>
       <CommentariesBox>
-        {problem.comments.map((elem) => {
+        {problem.comments.map((elem, index) => {
           return (
-            <>
-              <span>{elem.owner}</span>
+            <Comment key={index} role={elem.role}>
+              <span>{elem.role === 'user' ? 'Cidadao' : 'Admin'}</span>
               <p>{elem.text}</p>
-            </>
-          );
+            </Comment>
+          )
         })}
       </CommentariesBox>
     </Container>
-  );
+  )
+
 };
 
 export default SingleProblem;

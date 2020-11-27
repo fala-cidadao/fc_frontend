@@ -79,7 +79,7 @@ const Problems: React.FC = () => {
       </Filter>
       <List>
         {data.map((elem) => {
-          return <ProblemItem key={elem.title} problem={elem} />;
+          return <ProblemItem key={elem._id} problem={elem} />;
         })}
       </List>
     </Container>

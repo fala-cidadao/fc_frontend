@@ -70,38 +70,38 @@ export const api = {
   },
 
   register(
+    name: string,
     email: string,
     password: string,
     role: string,
     phone: string
   ): Promise<boolean> {
+    console.log(name, email, password, role, phone)
     return new Promise((resolve, reject) => {
       connection
         .post('users', {
+          name,
           email,
           password,
           role,
           phone
         })
         .then((res) => {
-          if (res.data.auth) {
-            localStorage.setItem('user', JSON.stringify(res.data.user));
-            localStorage.setItem('token', res.data.token);
-            store.addNotification({
-              title: 'Cadastro realizado.',
-              message: 'Foi enviado um link de confirmação para seu e-mail.',
-              type: 'success',
-              insert: 'top',
-              container: 'top-right',
-              animationIn: ['animate__animated', 'animate__fadeIn'],
-              animationOut: ['animate__animated', 'animate__fadeOut'],
-              dismiss: {
-                duration: 4000,
-                onScreen: true
-              }
-            });
-            resolve(true);
-          }
+
+          store.addNotification({
+            title: 'Cadastro realizado.',
+            message: 'Sua conta foi criada com sucesso!',
+            type: 'success',
+            insert: 'top',
+            container: 'top-right',
+            animationIn: ['animate__animated', 'animate__fadeIn'],
+            animationOut: ['animate__animated', 'animate__fadeOut'],
+            dismiss: {
+              duration: 4000,
+              onScreen: true
+            }
+          });
+          resolve(true);
         })
         .catch(() => {
           store.addNotification({
