@@ -1,3 +1,4 @@
+import { divIcon } from 'leaflet';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -27,3 +28,4 @@ export const InfoBox = styled.div`
   align-self: flex-start;
   margin: 30px 0;
 `;
+

@@ -5,6 +5,10 @@ interface IStatus extends HTMLAttributes<HTMLElement> {
   status: string;
 }
 
+interface IRole extends HTMLAttributes<HTMLElement> {
+  role: string;
+}
+
 export const StatusBox = styled.div<IStatus>`
   display: flex;
   flex-direction: row;
@@ -57,4 +61,17 @@ export const CommentariesBox = styled.div`
   height: 200px;
   overflow-y: auto;
   width: 100%;
+`;
+
+export const Comment = styled.div<IRole>`
+  margin: 10px 0px;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: Column;
+  width: 100%;
+  text-align: ${(props) => (props.role === 'admin' ? 'right' : 'left')};
+  background-color: ${(props) =>
+    props.role === 'admin' ? '#F6D55C' : '#ED553B'};
+    color: ${(props) => (props.role === 'admin' ? 'black' : 'white')};
 `;

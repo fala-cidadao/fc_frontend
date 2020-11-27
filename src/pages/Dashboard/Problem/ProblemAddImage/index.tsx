@@ -4,7 +4,12 @@ import { IProblem } from '../../../../@types/problems';
 import { api } from '../../../../service/api';
 import { store } from 'react-notifications-component';
 
-import { StatusBox, ImagesBox, CommentariesBox } from '../common.styles';
+import {
+  StatusBox,
+  ImagesBox,
+  CommentariesBox,
+  Comment
+} from '../common.styles';
 
 import { Container, InfoBox } from './styles';
 
@@ -152,10 +157,10 @@ const ProblemAddImage: React.FC = () => {
       <CommentariesBox>
         {problem.comments.map((elem, index) => {
           return (
-            <div key={index}>
+            <Comment key={index} role={elem.role}>
               <span>{elem.owner}</span>
               <p>{elem.text}</p>
-            </div>
+            </Comment>
           );
         })}
       </CommentariesBox>
