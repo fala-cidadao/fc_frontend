@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FormEvent } from 'react';
+import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 
 import { Bar, Form } from './styles';
 import { Icon } from '@iconify/react';
@@ -7,6 +7,8 @@ import bxsHide from '@iconify/icons-bx/bxs-hide';
 import { api } from '../../service/api';
 import { useHistory } from 'react-router-dom';
 import { User } from '../../@types/user';
+import { store } from 'react-notifications-component';
+import FileBase64 from 'react-file-base64';
 
 const ChangeProfileInformation: React.FC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -15,6 +17,11 @@ const ChangeProfileInformation: React.FC = () => {
   );
 
   const local = JSON.parse(localStorage.getItem('user') || '');
+
+  const [photo, setPhoto] = useState<string>('')
+  const [name, setName] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
 
   const [user, setUser] = useState<User>({
     image: "",
@@ -34,15 +41,110 @@ const ChangeProfileInformation: React.FC = () => {
       .getUser(local.userId)
       .then((res) => {
         setUser(res)
+        setName(res.name);
+        setPhoto(res.image);
       })
       .catch(() => {
         history.push('/dashboard/problems')
       });
   }, [local.userId]);
 
+  function updateSucess(){
+    return (
+      store.addNotification({
+        title: 'Sucesso',
+        message: 'Alterações realizadas com sucesso.',
+        type: 'success',
+        insert: 'top',
+        container: 'top-right',
+        animationIn: ['animate__animated', 'animate__fadeIn'],
+        animationOut: ['animate__animated', 'animate__fadeOut'],
+        dismiss: {
+          duration: 4000,
+          onScreen: true
+        }
+      })
+    )
+  }
+
+  function updateFail(message){
+    return(
+      store.addNotification({
+        title: 'Falha',
+        message: message,
+        type: 'danger',
+        insert: 'top',
+        container: 'top-right',
+        animationIn: ['animate__animated', 'animate__fadeIn'],
+        animationOut: ['animate__animated', 'animate__fadeOut'],
+        dismiss: {
+          duration: 4000,
+          onScreen: true
+        }
+      })
+    )
+  }
+
+  async function handleUpdate(newName, newPassword, confirmPassword) {
+    if (newName !== ""){
+      if (newPassword === confirmPassword){
+        if (newPassword.length >= 8){
+          const userNew = {
+            image: photo,
+            id: user.id,
+            name: newName,
+            email: user.email,
+            password: newPassword,
+            role: user.role,
+            phone: user.phone,
+            createdAt: user.createdAt
+          }
+      
+          await api.updateUser(local.userId, userNew)
+
+          window.location.reload();
+          
+          updateSucess();
+        } else if (password === "") {
+          const userNew = {
+            image: photo,
+            id: user.id,
+            name: newName,
+            email: user.email,
+            password: user.password,
+            role: user.role,
+            phone: user.phone,
+            createdAt: user.createdAt
+          }
+          
+          await api.updateUser(local.userId, userNew)
+
+          window.location.reload();
+
+          updateSucess();
+        } else {
+          updateFail('Quantidade de caracteres insuficientes (minimo 8 caracteres)');
+        }
+      } else {
+        updateFail('As senhas estão diferentes');
+      }
+    } else {
+      updateFail('Nome de usuário nulo');
+    }
+  }
+
+  function uploadFile(file) {
+    console.log(file);
+    console.log(file.base64);
+    setPhoto(file.base64);
+  }
+
   return (
-      <Form>
-        <img alt='imagem' className='user-picture' src={user.image} />
+        <Form>
+          <div className='image-container'>
+            <img alt='imagem' className='user-picture' src={user.image} />
+            <FileBase64 multiple={false} onDone={(file) => uploadFile(file)} />
+          </div>
         <Bar>
           <h1 className='subtitle'>
             Alterar nome
@@ -53,6 +155,9 @@ const ChangeProfileInformation: React.FC = () => {
           className='input'
           placeholder='Insira seu novo nome'
           defaultValue={user.name}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setName(e.target.value)
+          }
         />
         <Bar>
           <h1 className='subtitle'>
@@ -66,6 +171,9 @@ const ChangeProfileInformation: React.FC = () => {
               className='input'
               type={showPassword ? 'text' : 'password'}
               placeholder='Insira sua nova senha'
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setPassword(e.target.value)
+              }
             />
             <span
               onClick={() => setShowPassword((prev) => !prev)}
@@ -84,6 +192,9 @@ const ChangeProfileInformation: React.FC = () => {
               className='input'
               type={showConfirmPassword ? 'text' : 'password'}
               placeholder='Confirme sua nova senha'
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setConfirmPassword(e.target.value)
+              }
             />
             <span
               onClick={() => setShowConfirmPassword((prev) => !prev)}
@@ -96,7 +207,7 @@ const ChangeProfileInformation: React.FC = () => {
             </span>
           </p>
         </div>
-        <button className='button'>Salvar</button>
+        <button type='submit' onClick={() => handleUpdate(name, password, confirmPassword)} className='button'>Salvar</button>
       </Form>
   );
 };

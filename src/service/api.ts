@@ -354,7 +354,6 @@ export const api = {
   },
 
   updateUser(id: string, user: User): Promise<User>{
-    console.log(user)
     return new Promise((resolve) => {
       connection
         .put(`users/${id}`, user)
